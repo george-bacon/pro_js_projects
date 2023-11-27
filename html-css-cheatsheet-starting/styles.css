@@ -1,0 +1,10 @@
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  text-align: center;
+  font-size: 14px;
+}
+
+h1 {
+  color: gray;
+  font-size: 4.5rem;
+}
