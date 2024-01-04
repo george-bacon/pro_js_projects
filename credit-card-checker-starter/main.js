@@ -54,64 +54,62 @@ const validateCred = (arr) => {
     }
   }
 
-//   console.log(newArr);
+  //   console.log(newArr);
 
   const totalSum = newArr.reduce((sum, digit) => sum + digit, 0);
 
-//   console.log(totalSum);
+  //   console.log(totalSum);
 
   return totalSum % 10 === 0;
 };
 
-const findInvalidCards = cardsArray => {
-    const invalidCards = [];
+const findInvalidCards = (cardsArray) => {
+  const invalidCards = [];
 
-    for (let cardDigits of cardsArray) {
-        if (!validateCred(cardDigits)) {
-            invalidCards.push(cardDigits);
-        }
+  for (let cardDigits of cardsArray) {
+    if (!validateCred(cardDigits)) {
+      invalidCards.push(cardDigits);
     }
+  }
 
-    return invalidCards;
-}
+  return invalidCards;
+};
 
 const idInvalidCardCompanies = (array) => {
+  let invalidCards = findInvalidCards(array);
+  let companyInvalid = [];
 
-    let invalidCards = findInvalidCards(array);
-    let companyInvalid = [];
+  for (let card of invalidCards) {
+    let firstDigit = card.reverse()[0];
+    // console.log(firstDigit);
 
-    for (let card of invalidCards) {
-        let firstDigit = card.reverse()[0];
-        // console.log(firstDigit);
-        
-        let company = '';
+    let company = "";
 
-        switch (firstDigit) {
-            case 3:
-                company = 'Amex'
-                break;
-            case 4:
-                company = 'Visa';
-                break;
-            case 5:
-                company = 'MasterCard';
-                break;
-            case 6: 
-                company = 'Discover';
-                break;
-            default:
-                company = 'Company not found'
-                break;
-        }
-
-        if (companyInvalid.indexOf(company) < 0) {
-            companyInvalid.push(company);
-        }
+    switch (firstDigit) {
+      case 3:
+        company = "Amex";
+        break;
+      case 4:
+        company = "Visa";
+        break;
+      case 5:
+        company = "MasterCard";
+        break;
+      case 6:
+        company = "Discover";
+        break;
+      default:
+        company = "Company not found";
+        break;
     }
 
-    return companyInvalid
+    if (companyInvalid.indexOf(company) < 0) {
+      companyInvalid.push(company);
+    }
+  }
 
-}
+  return companyInvalid;
+};
 
 console.log(findInvalidCards(batch));
 console.log(idInvalidCardCompanies(batch));
